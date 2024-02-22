@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: RoutesBusApi
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints.web.exposure.include: "*"
+  server:
+    port: 9080
+  security:
+    enabled: false
+
+swagger:
+  server-url: http://localhost:8080
+  application-version: 0.0.1-SNAPSHOT
+
+routes:
+  api-key: ${API_KEY}
+  base-url: "https://api.sl.se/api2/LineData.json?key=${routes.api-key}"
+  journey-pattern-point-on-line-url: "${routes.base-url}&model=JourneyPatternPointOnLine"
+  line-url: "${routes.base-url}&model=Line"
+  stop-point-url: "${routes.base-url}&model=StopPoint"
